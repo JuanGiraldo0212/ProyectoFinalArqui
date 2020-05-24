@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "YjQCL8RiyOztTPf09/YqIaOP0xKMvK097Y3MTcuzf4xQqfmsw6kGo7brE6uq1ctLJioov3ZlRqksQbzub7epRA==",
+  "dgSpecHash": "PhFuyiOLT7aYkqFkQXwI4ake0TUxTTcMl+UnPy1PXuQ33EenIlVLNBcgn869CEFUlRyb0mH/4Wb9ZSZ9LA3fLg==",
   "success": true,
   "projectFilePath": "D:\\Users\\Usuario\\Desktop\\Repos\\ProyectoFinalArqui\\InversionImagen\\InversionImagen\\InversionImagen.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }
