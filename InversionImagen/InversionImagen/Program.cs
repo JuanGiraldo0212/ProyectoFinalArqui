@@ -1,27 +1,107 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Net.Security;
+using System.Text;
 
 namespace InversionImagen
 {
 	class Program
 	{
-		static void Main(string[] args)
+
+       
+        
+
+        static void Main(string[] args)
 		{
-            String ruta = "D:/Users/Usuario/Desktop/Test/Mario.bmp";
-            Version1(ruta);
-            Version2(ruta);
-            Version3(ruta);
-            Version4(ruta);
-            Version5(ruta);
+            //StreamWriter sw = new StreamWriter("D:/Users/Usuario/Desktop/Experimento/Datos.txt");
+            var csv = new StringBuilder();
+            for (int i=0;i<3;i++) {
+                var reader = new StreamReader(File.OpenRead("D:/Users/Usuario/Desktop/Experimento/Inputs.csv"));
+                while (!reader.EndOfStream)
+                {
+                    int algoritmo;
+                    int tam;
+                    int prof;
+                    var line = reader.ReadLine();
+                    var values = line.Split(';');
 
-		}
+                    algoritmo = Int32.Parse(values[0]);
+                    tam = Int32.Parse(values[1]);
+                    prof = Int32.Parse(values[2]);
+                    String ruta = "D:/Users/Usuario/Desktop/Experimento/" + tam + "/" + prof + ".bmp";
+                    if (algoritmo == 1)
+                    {
+                        var first = algoritmo;
+                        var second = tam;
+                        var third = prof;
+                        var fourth = Version1(ruta);
+                        var newLine = string.Format("{0},{1},{2},{3}", first, second, third, fourth);
+                        csv.AppendLine(newLine);
+
+                    }
+                    else if (algoritmo == 2)
+                    {
+                        var first = algoritmo;
+                        var second = tam;
+                        var third = prof;
+                        var fourth = Version2(ruta);
+                        var newLine = string.Format("{0},{1},{2},{3}", first, second, third, fourth);
+                        csv.AppendLine(newLine);
+
+                    }
+                    else if (algoritmo == 3)
+                    {
+                        var first = algoritmo;
+                        var second = tam;
+                        var third = prof;
+                        var fourth = Version3(ruta);
+                        var newLine = string.Format("{0},{1},{2},{3}", first, second, third, fourth);
+                        csv.AppendLine(newLine);
+
+                    }
+                    else if (algoritmo == 4)
+                    {
+                        var first = algoritmo;
+                        var second = tam;
+                        var third = prof;
+                        var fourth = Version4(ruta);
+                        var newLine = string.Format("{0},{1},{2},{3}", first, second, third, fourth);
+                        csv.AppendLine(newLine);
+
+                    }
+                    else if (algoritmo == 5)
+                    {
+                        var first = algoritmo;
+                        var second = tam;
+                        var third = prof;
+                        var fourth = Version5(ruta);
+                        var newLine = string.Format("{0},{1},{2},{3}", first, second, third, fourth);
+                        csv.AppendLine(newLine);
+
+                    }
+
+                }
+            }
+            File.WriteAllText("D:/Users/Usuario/Desktop/Experimento/Datos.txt", csv.ToString());
+            
+
+
+        }
 
         
-        public static Bitmap Version1(string bitmapFilePath)
+        public static long Version1(string bitmapFilePath)
         {
-        
+
+            Stopwatch timeA = new Stopwatch();
+            timeA.Restart();
+            timeA.Start();
+            long tiempo = 0;
+
+
+
             Bitmap b1 = new Bitmap(bitmapFilePath);
 
             int height = b1.Height;
@@ -39,12 +119,18 @@ namespace InversionImagen
                     result.SetPixel(i,j,Color.FromArgb(R,G,B));
                 }
             }
+            timeA.Stop();
+            tiempo = (long)(timeA.Elapsed.TotalMilliseconds);
             result.Save("D:/Users/Usuario/Desktop/Test/Out1.bmp", ImageFormat.Bmp);
-            return result;
+            return tiempo;
         }
 
-        public static void Version2(string bitmapFilePath)
+        public static long Version2(string bitmapFilePath)
         {
+            Stopwatch timeA = new Stopwatch();
+            timeA.Restart();
+            timeA.Start();
+            long tiempo = 0;
 
             Bitmap b1 = new Bitmap(bitmapFilePath);
 
@@ -88,13 +174,19 @@ namespace InversionImagen
                 }
             }
 
+            timeA.Stop();
+            tiempo = (long)(timeA.Elapsed.TotalMilliseconds);
             result.Save("D:/Users/Usuario/Desktop/Test/Out2.bmp", ImageFormat.Bmp);
-         
+            return tiempo;
         }
 
-        public static void Version3(string bitmapFilePath)
+        public static long Version3(string bitmapFilePath)
         {
 
+            Stopwatch timeA = new Stopwatch();
+            timeA.Restart();
+            timeA.Start();
+            long tiempo = 0;
             Bitmap b1 = new Bitmap(bitmapFilePath);
 
             int height = b1.Height;
@@ -114,11 +206,18 @@ namespace InversionImagen
                     result.SetPixel(i, j, Color.FromArgb(R, G, B));
                 }
             }
+            timeA.Stop();
+            tiempo = (long)(timeA.Elapsed.TotalMilliseconds);
             result.Save("D:/Users/Usuario/Desktop/Test/Out3.bmp", ImageFormat.Bmp);
+            return tiempo;
 
         }
 
-        public static void Version4(String bitmapFilePath) {
+        public static long Version4(String bitmapFilePath) {
+            Stopwatch timeA = new Stopwatch();
+            timeA.Restart();
+            timeA.Start();
+            long tiempo = 0;
             Bitmap b1 = new Bitmap(bitmapFilePath);
 
             int height = b1.Height;
@@ -144,13 +243,20 @@ namespace InversionImagen
                     result.SetPixel(i,j,Color.FromArgb(pass.R,G,B));
                 }
             }
+            timeA.Stop();
+            tiempo = (long)(timeA.Elapsed.TotalMilliseconds);
             result.Save("D:/Users/Usuario/Desktop/Test/Out4.bmp", ImageFormat.Bmp);
+            return tiempo;
 
         }
 
 
 
-        public static void Version5(String bitmapFilePath) {
+        public static long Version5(String bitmapFilePath) {
+            Stopwatch timeA = new Stopwatch();
+            timeA.Restart();
+            timeA.Start();
+            long tiempo = 0;
 
             Bitmap b1 = new Bitmap(bitmapFilePath);
 
@@ -174,7 +280,10 @@ namespace InversionImagen
                 }
             
             }
+            timeA.Stop();
+            tiempo = (long)(timeA.Elapsed.TotalMilliseconds);
             result.Save("D:/Users/Usuario/Desktop/Test/Out5.bmp", ImageFormat.Bmp);
+            return tiempo;
         }
 
     }
